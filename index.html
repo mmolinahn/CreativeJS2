@@ -1,6 +1,8 @@
 <html>
 <head>
 <link href="./main.css" media="screen" rel="stylesheet" type="text/css" />
+<meta name="viewport"content="width=device-width, initial-scale=1.0">
+<title>Speechless?</title>
 <script
   src="http://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -32,6 +34,10 @@ $("#submitButton").click(function(e){
         everything = "<p>"
       everything += "Your Fortune: " +message;
       everything += "</p>";
+
+      if(value == "" || value < 1 || value > 500){
+	everything = "<b>Please Enter a value between 1 and 500!</b>";
+      }
       $("#displayFortune").html(everything);
     }
   });
@@ -87,6 +93,11 @@ $("#submitTrump").click(function(e){
         everything = "<p>"
       everything += "Trump:\""+ value +" " + quote + "\"";
       everything += "</p>";
+
+      if(value == ""){
+	everything = "<b>Please Enter your name!</b>";
+
+      }
       $("#displayTrump").html(everything);
     }
   });
@@ -102,36 +113,47 @@ $("#submitTrump").click(function(e){
 
 </head>
 <header>
+<br>
+<br>
 <center>
-Do you need Wise Words Of Wisdom? Select a number and get your fortune!
+<h1>Don't know what to say? We can help.</h1>
+<br>
+<br>
 </center>
 </header>
 <body>
+<center>
+<p>Open a Fortune Cookie!</p>
 <form>
-Enter A Number between 1 and 500: <input type="text" id="randomNumber" value=""><br>
-<input id="submitButton" type="submit" value="Submit">
+<p>Enter A Number between 1 and 500: <input type="text" id="randomNumber" value=""></p><br>
+<input id="submitButton" type="submit" value="Open Cookie">
 </form>
-<div id="displayFortune">Your fortune will appear here.</div>
+<div id="displayFortune"><p>Your fortune will appear here.</p></div>
 <br>
 <form>
-Need a Pickup line? Hit submit!<br>
+<p>Need a Pickup line? Hit submit!</p>
+<br>
 <input id="submitPick" type="submit" value="Submit">
 </form>
-<div id="displayLine">Your pickup line will appear here.</div>
+<div id="displayLine"><p>Your pickup line will appear here.</p></div>
 <br>
 <form>
-What Does Trump think about you: <input type="text" id="trumpName" value=""><br>
-<input id="submitTrump" type="submit" value="Submit">
+<p>What Does Trump think about you?</p>
+<p>Enter your name and find out: <input type="text" id="trumpName" value=""></p><br>
+<input id="submitTrump" type="submit" value="Tell me">
 </form>
-<div id="displayTrump">Your personalized Trump quote will appear here.</div>
+<div id="displayTrump"><p>Your personalized Trump quote will appear here.</p></div>
 
-
+</center>
 
 </body>
 <footer>
 <center>
-Created by Taylor & Moises
+<br>
+<br>
+<h4>Created by Taylor & Moises</h4>
 </center>
-
+<br>
+<br>
 </footer>
 </html>

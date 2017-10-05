@@ -1,4 +1,29 @@
- html, body {
+div {
+    width: 300px;
+    border: 10px solid #76323f;
+    padding: 25px;
+    margin: 25px;
+}
+b {
+
+color:  #763237;
+}
+h1 {
+ margin: 0;
+ color: white;
+} 
+
+h4 {
+color: white;
+margin: 0;
+
+}
+p {
+color: #565656
+
+
+}
+html, body {
 	margin: 0;
 	padding: 0;
 
@@ -6,12 +31,17 @@
 
 footer {
 
-	background-color: lightblue;
-
+	background-color: #C09F80;
+        border-color: #C09F80;
 }
 
 header {
 
-	background-color: lightblue;
+	background-color: #C09F80;
+        border-color: #C09F80;
+}
+body {
+
+	background-color: #d7cec7; 
 
 }
