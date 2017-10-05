@@ -1,0 +1,137 @@
+<html>
+<head>
+<link href="./main.css" media="screen" rel="stylesheet" type="text/css" />
+<script
+  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
+
+
+<script>
+$(document).ready(function() {
+  
+
+
+$("#submitButton").click(function(e){
+  var value = $("#randomNumber").val();
+  e.preventDefault();
+
+
+
+  var myurl= "http://fortunecookieapi.herokuapp.com/v1/fortunes?limit=1&skip=";
+  myurl += value;
+  myurl += "&page=";
+ console.log(myurl);
+  $.ajax({
+    url : myurl,
+    type : 'get',
+    dataType : "json",
+    success : function(parsed_json) {
+      var message = parsed_json[0]['message'];
+        everything = "<p>"
+      everything += "Your Fortune: " +message;
+      everything += "</p>";
+      $("#displayFortune").html(everything);
+    }
+  });
+});
+
+
+$("#submitPick").click(function(e){
+  e.preventDefault();
+
+
+
+  var myurl= "http://pebble-pickup.herokuapp.com/tweets/random";
+ console.log(myurl);
+  $.ajax({
+    url : myurl,
+    type : 'get',
+    dataType : "json",
+    success : function(parsed_json) {
+      var line = parsed_json['tweet'];
+        everything = "<p>"
+      everything += "Your Pickup Line: " +line;
+      everything += "</p>";
+
+//FOR TA'S: This API returns one inappropiate pickup line, this is how we make sure it never gets displayed
+      var notAppropiate = everything.includes("grades");
+	if(notAppropiate){
+	everything = "<p> Did it hurt when you fell from heaven?";
+		
+	} 
+
+      $("#displayLine").html(everything);
+    }
+  });
+});
+
+
+
+$("#submitTrump").click(function(e){
+  var value = $("#trumpName").val();
+  e.preventDefault();
+
+
+  var myurl= "https://api.whatdoestrumpthink.com/api/v1/quotes";
+ console.log(myurl);
+  $.ajax({
+    url : myurl,
+    type : 'get',
+    dataType : "json",
+    success : function(parsed_json) {
+      var personalized = parsed_json['messages']["personalized"];
+      var randomNum = Math.floor(Math.random() * personalized.length);
+      var quote = parsed_json['messages']["personalized"][randomNum];
+        everything = "<p>"
+      everything += "Trump:\""+ value +" " + quote + "\"";
+      everything += "</p>";
+      $("#displayTrump").html(everything);
+    }
+  });
+});
+
+
+
+
+
+});
+</script>
+
+
+</head>
+<header>
+<center>
+Do you need Wise Words Of Wisdom? Select a number and get your fortune!
+</center>
+</header>
+<body>
+<form>
+Enter A Number between 1 and 500: <input type="text" id="randomNumber" value=""><br>
+<input id="submitButton" type="submit" value="Submit">
+</form>
+<div id="displayFortune">Your fortune will appear here.</div>
+<br>
+<form>
+Need a Pickup line? Hit submit!<br>
+<input id="submitPick" type="submit" value="Submit">
+</form>
+<div id="displayLine">Your pickup line will appear here.</div>
+<br>
+<form>
+What Does Trump think about you: <input type="text" id="trumpName" value=""><br>
+<input id="submitTrump" type="submit" value="Submit">
+</form>
+<div id="displayTrump">Your personalized Trump quote will appear here.</div>
+
+
+
+</body>
+<footer>
+<center>
+Created by Taylor & Moises
+</center>
+
+</footer>
+</html>
